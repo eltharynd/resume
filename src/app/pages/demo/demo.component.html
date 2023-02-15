@@ -1,0 +1,351 @@
+<mat-card style="width: fit-content; margin: auto; margin-top: 2rem">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>FORM</mat-card-title>
+      <mat-card-subtitle>Example of form controls</mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card-header>
+
+  <!-- INPUTS -->
+  <mat-card-content>
+    <h4>Reactive Inputs</h4>
+    <form
+      (ngSubmit)="submit()"
+      [formGroup]="formGroup"
+      style="display: flex; gap: 2rem"
+    >
+      <mat-form-field appearance="fill">
+        <mat-label>email</mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          placeholder="john.snow@example.com"
+        />
+        <mat-error>{{ formGroup.get('email') | fcErrorsPipe }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>username</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="username"
+          placeholder="john_snow"
+        />
+        <mat-error>
+          {{ formGroup.get('username') | fcErrorsPipe }}
+        </mat-error>
+      </mat-form-field>
+    </form>
+
+    <h4>Inputs with icons</h4>
+    <div style="display: flex; gap: 2rem">
+      <mat-form-field>
+        <mat-label>suffix</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="_string"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <button matSuffix mat-icon-button (click)="_string = null">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>prefix</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="_string"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <button matPrefix mat-icon-button (click)="_string = 'searching'">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div style="display: flex; gap: 2rem">
+      <mat-form-field appearance="outline">
+        <mat-label>suffix</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="_string"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <button matSuffix mat-icon-button (click)="_string = null">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>prefix</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="_string"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <button matPrefix mat-icon-button (click)="_string = 'searching'">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <h4>TextArea</h4>
+    <div style="display: flex; gap: 2rem; align-items: flex-start">
+      <mat-form-field>
+        <mat-label>fill</mat-label>
+        <textarea
+          matInput
+          [(ngModel)]="_string"
+          [ngModelOptions]="{ standalone: true }"
+        ></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>outline</mat-label>
+        <textarea
+          matInput
+          [(ngModel)]="_string"
+          [ngModelOptions]="{ standalone: true }"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+
+  <!-- BUTTONS -->
+  <mat-card-content>
+    <h4>Basic buttons</h4>
+    <div style="display: flex; gap: 1rem">
+      <button mat-button>Basic</button>
+      <button *ngFor="let c of _colors" mat-button type="submit" [color]="c">
+        {{ c }}
+      </button>
+      <button mat-button disabled>Disabled</button>
+      <a mat-button href="JavaScript:void(0);">Link</a>
+    </div>
+
+    <h4>Raised buttons</h4>
+    <div style="display: flex; gap: 1rem">
+      <button mat-raised-button>Basic</button>
+      <button
+        *ngFor="let c of _colors"
+        mat-raised-button
+        type="submit"
+        [color]="c"
+      >
+        {{ c }}
+      </button>
+      <button mat-raised-button disabled>Disabled</button>
+      <a mat-raised-button href="JavaScript:void(0);">Link</a>
+    </div>
+
+    <h4>Stroked buttons</h4>
+    <div style="display: flex; gap: 1rem">
+      <button mat-stroked-button>Basic</button>
+      <button
+        *ngFor="let c of _colors"
+        mat-stroked-button
+        type="submit"
+        [color]="c"
+      >
+        {{ c }}
+      </button>
+      <button mat-stroked-button disabled>Disabled</button>
+      <a mat-stroked-button href="JavaScript:void(0);">Link</a>
+    </div>
+
+    <h4>Flat buttons</h4>
+    <div style="display: flex; gap: 1rem">
+      <button mat-flat-button>Basic</button>
+      <button
+        *ngFor="let c of _colors"
+        mat-flat-button
+        type="submit"
+        [color]="c"
+      >
+        {{ c }}
+      </button>
+      <button mat-flat-button disabled>Disabled</button>
+      <a mat-flat-button href="JavaScript:void(0);">Link</a>
+    </div>
+
+    <h4>Icon buttons</h4>
+    <div style="display: flex; gap: 1rem">
+      <button mat-icon-button>
+        <mat-icon>home</mat-icon>
+      </button>
+
+      <button
+        *ngFor="let c of _colors"
+        mat-icon-button
+        type="submit"
+        [color]="c"
+      >
+        <mat-icon>home</mat-icon>
+      </button>
+      <button mat-icon-button disabled><mat-icon>home</mat-icon></button>
+    </div>
+
+    <h4>Fab buttons</h4>
+    <div style="display: flex; gap: 1rem">
+      <button *ngFor="let c of _colors" mat-fab type="submit" [color]="c">
+        <mat-icon>home</mat-icon>
+      </button>
+      <button mat-fab disabled><mat-icon>home</mat-icon></button>
+    </div>
+
+    <h4>Mini fab buttons</h4>
+    <div style="display: flex; gap: 1rem">
+      <button *ngFor="let c of _colors" mat-mini-fab type="submit" [color]="c">
+        <mat-icon>home</mat-icon>
+      </button>
+      <button mat-mini-fab disabled><mat-icon>home</mat-icon></button>
+    </div>
+  </mat-card-content>
+
+  <!-- CONTROLS -->
+  <mat-card-content>
+    <h4>Slide toggle</h4>
+    <div style="display: flex; gap: 1rem">
+      <mat-slide-toggle [(ngModel)]="_boolean">Default</mat-slide-toggle>
+      <mat-slide-toggle
+        *ngFor="let color of _colors"
+        [color]="color"
+        [(ngModel)]="_boolean"
+        >{{ color }}</mat-slide-toggle
+      >
+    </div>
+
+    <h4>Checkbox</h4>
+    <div style="display: flex; gap: 1rem">
+      <mat-checkbox [(ngModel)]="_boolean">Default</mat-checkbox>
+      <mat-checkbox
+        *ngFor="let color of _colors"
+        [color]="color"
+        [(ngModel)]="_boolean"
+        >{{ color }}</mat-checkbox
+      >
+    </div>
+  </mat-card-content>
+
+  <!-- SLIDER -->
+  <mat-card-content>
+    <h4>Sliders</h4>
+    <p>Basic:</p>
+    <mat-slider min="0" max="100" step="1">
+      <input matSliderThumb [(ngModel)]="_number" />
+    </mat-slider>
+    {{ _number }}
+
+    <p>Tick marks:</p>
+    <mat-slider min="0" max="100" step="1" showTickMarks>
+      <input matSliderThumb [(ngModel)]="_number" />
+    </mat-slider>
+    {{ _number }}
+
+    <p>Discrete:</p>
+    <mat-slider min="0" max="100" step="1" discrete>
+      <input matSliderThumb [(ngModel)]="_number" />
+    </mat-slider>
+    {{ _number }}
+
+    <p>Custom:</p>
+    <mat-slider
+      min="0"
+      max="100"
+      step="1"
+      discrete
+      [displayWith]="_formatLabel"
+    >
+      <input matSliderThumb [(ngModel)]="_number" />
+    </mat-slider>
+    {{ _number }}
+
+    <p>Range:</p>
+    <mat-slider min="0" max="100" step="1">
+      <input matSliderStartThumb [(ngModel)]="_A" />
+      <input matSliderEndThumb [(ngModel)]="_B" />
+    </mat-slider>
+    {{ _A }} - {{ _B }}
+  </mat-card-content>
+
+  <!-- CHIPS -->
+  <mat-card-content>
+    <h4>Chips</h4>
+
+    <div
+      style="
+        display: flex;
+        gap: 1rem;
+        min-height: 9rem;
+        align-items: flex-start;
+      "
+    >
+      <mat-form-field class="example-chip-list" appearance="fill">
+        <mat-label>Categories</mat-label>
+        <mat-chip-grid #chipGrid aria-label="Categories selection">
+          <mat-chip-row
+            *ngFor="let cat of categories"
+            (removed)="categories.delete(cat)"
+          >
+            {{ cat }}
+            <button matChipRemove [attr.aria-label]="'remove ' + cat">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <input
+          placeholder="New Category..."
+          #categoryInput
+          [formControl]="_searching"
+          [matChipInputFor]="chipGrid"
+          [matAutocomplete]="auto"
+          [matChipInputSeparatorKeyCodes]="_separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)"
+        />
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="add($event)"
+        >
+          <mat-option *ngFor="let cat of _filtered | async" [value]="cat">
+            {{ cat }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <div style="display: flex; flex-direction: column">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="New Category..."
+            #categoryInput2
+            [formControl]="_searching"
+            [matAutocomplete]="auto2"
+          />
+          <mat-autocomplete
+            #auto2="matAutocomplete"
+            (optionSelected)="add($event)"
+          >
+            <mat-option *ngFor="let cat of _filtered | async" [value]="cat">
+              {{ cat }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-chip-listbox #chipList aria-label="Categories selection">
+          <mat-chip
+            *ngFor="let cat of categories"
+            (removed)="categories.delete(cat)"
+          >
+            {{ cat }}
+            <button matChipRemove [attr.aria-label]="'remove ' + cat">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+        </mat-chip-listbox>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
